@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, MouseEvent } from "react";
 import "./App.scss";
 import Block from "./components/Block";
-import { getShuffledBlocks } from "./utils";
+import { checkSwappable, getShuffledBlocks, swapBlocks } from "./utils";
 
 const NUMBER_OF_BLOCKS = 9;
 
@@ -10,11 +10,20 @@ function App() {
     () => getShuffledBlocks(NUMBER_OF_BLOCKS),
     [NUMBER_OF_BLOCKS]
   );
-  const [blocks] = useState(shuffledBlocks);
+  const [blocks, setBlocks] = useState<number[]>(shuffledBlocks);
 
-  function handleClick(index: number) {
-    console.log("index", index);
+  function handleBlockClick(
+    event: MouseEvent<HTMLDivElement>,
+    blockId: number
+  ) {
+    event.preventDefault();
+    const isSwappableBlock = checkSwappable(blockId, blocks);
+    if (isSwappableBlock) {
+      const getSwappedBlocks = swapBlocks(blockId, blocks);
+      setBlocks([...getSwappedBlocks]);
+    }
   }
+  console.log("blocksblocks", blocks);
 
   return (
     <div className="app">
@@ -23,9 +32,9 @@ function App() {
         {blocks.map((block, index) => (
           <Block
             index={index}
-            blockId={block + 1}
+            blockId={block}
             key={block}
-            handleClick={handleClick}
+            handleBlockClick={handleBlockClick}
             totalBlocks={blocks.length}
           />
         ))}
