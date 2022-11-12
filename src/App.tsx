@@ -1,69 +1,70 @@
 import { useMemo, useState, MouseEvent } from "react";
-import "./App.scss";
-import Block from "./components/Block";
+import "./app.scss";
+import Block from "./components/block";
+import NumberOfMoves from "./components/number-of-moves";
+import WinningMessage from "./components/winning-message";
+import { IPuzzleData } from "./types";
 import {
   checkSwappable,
   getShuffledBlocks,
   getSwappedBlocks,
-  checkIsOwn,
+  checkIsWon,
 } from "./utils";
-import Confetti from "react-confetti";
 
 const NUMBER_OF_BLOCKS = 9;
 
+const initPuzzleData: IPuzzleData = {
+  blocks: getShuffledBlocks(NUMBER_OF_BLOCKS),
+  isWon: false,
+  numberOfMoves: 0,
+};
+
 function App() {
-  const shuffledBlocks = useMemo(
-    () => getShuffledBlocks(NUMBER_OF_BLOCKS),
-    [NUMBER_OF_BLOCKS]
-  );
-  const [blocks, setBlocks] = useState<number[]>(shuffledBlocks);
-  const [isOwn, setIsOwn] = useState<boolean>(false);
+  const memoizedInitData = useMemo(() => initPuzzleData, [initPuzzleData]);
+  const [puzzleData, setPuzzleData] = useState<IPuzzleData>(memoizedInitData);
 
   function handleBlockClick(
     event: MouseEvent<HTMLDivElement>,
     blockId: number
   ) {
     event.preventDefault();
-    const isSwappableBlock = checkSwappable(blockId, blocks);
+    // check whether the block is swappable
+    const isSwappableBlock = checkSwappable(blockId, puzzleData.blocks);
     if (isSwappableBlock) {
-      const swappedBlocks = [...getSwappedBlocks(blockId, blocks)];
-      setBlocks(swappedBlocks);
-      const isPuzzleSolved = checkIsOwn(swappedBlocks);
+      // increase the move count
+      setPuzzleData((puzzleData) => ({
+        ...puzzleData,
+        numberOfMoves: puzzleData.numberOfMoves + 1,
+      }));
+      const swappedBlocks = [...getSwappedBlocks(blockId, puzzleData.blocks)];
+      setPuzzleData((puzzleData) => ({
+        ...puzzleData,
+        blocks: swappedBlocks,
+      }));
+      // check whether puzzle is solved
+      const isPuzzleSolved = checkIsWon(swappedBlocks);
       if (isPuzzleSolved) {
-        setIsOwn(isPuzzleSolved);
+        setPuzzleData((puzzleData) => ({
+          ...puzzleData,
+          isWon: isPuzzleSolved,
+        }));
       }
     }
   }
-  console.log("blocksblocks", blocks);
-
   return (
     <div className="app">
       <h1>Welcome to puzzle</h1>
-
+      {puzzleData.numberOfMoves > 0 && (
+        <NumberOfMoves moves={puzzleData.numberOfMoves} />
+      )}
       <div className="puzzle-container">
-        {isOwn && (
-          <>
-            <div className="party-container">
-              <Confetti
-                width={window.innerWidth}
-                height={window.innerHeight}
-                numberOfPieces={400}
-                recycle={false}
-              />
-            </div>
-            <p className="win-message">
-              🎉 🥳
-              <br /> You won the game!
-            </p>
-          </>
-        )}
-        {blocks.map((block, index) => (
+        {puzzleData.isWon && <WinningMessage />}
+        {puzzleData.blocks.map((block) => (
           <Block
-            index={index}
             blockId={block}
             key={block}
             handleBlockClick={handleBlockClick}
-            totalBlocks={blocks.length}
+            totalBlocks={puzzleData.blocks.length}
           />
         ))}
       </div>

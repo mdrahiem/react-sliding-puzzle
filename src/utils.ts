@@ -42,11 +42,11 @@ function checkSwappable(currentBlock: number, blocksArray: number[]): boolean {
   );
 }
 
-function checkIsOwn(blocksArray: number[]): boolean {
+function checkIsWon(blocksArray: number[]): boolean {
   const winningBlocksArray = [...blocksArray].sort((a, b) => a - b);
   return blocksArray.every(
     (block, index) => block === winningBlocksArray[index]
   );
 }
 
-export { getShuffledBlocks, getSwappedBlocks, checkSwappable, checkIsOwn };
+export { getShuffledBlocks, getSwappedBlocks, checkSwappable, checkIsWon };

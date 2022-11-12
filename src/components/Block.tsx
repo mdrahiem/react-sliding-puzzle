@@ -1,15 +1,6 @@
-import React from "react";
+import { IBlockProps } from "../types";
 
-interface IBlockProps {
-  index: number;
-  blockId: number;
-  handleBlockClick: (
-    event: React.MouseEvent<HTMLDivElement>,
-    blockId: number
-  ) => void;
-  totalBlocks: number;
-}
-function Block({ index, blockId, handleBlockClick, totalBlocks }: IBlockProps) {
+function Block({ blockId, handleBlockClick, totalBlocks }: IBlockProps) {
   const isEmptyBlock = blockId === totalBlocks - 1;
   return (
     <div className="puzzle-block" onClick={(e) => handleBlockClick(e, blockId)}>
