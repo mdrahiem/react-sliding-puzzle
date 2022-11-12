@@ -7,7 +7,10 @@ function getShuffledBlocks(blocks: number) {
   return shuffledBlocks;
 }
 
-function swapBlocks(currentBlock: number, blocksArray: number[]): number[] {
+function getSwappedBlocks(
+  currentBlock: number,
+  blocksArray: number[]
+): number[] {
   const currentBlockPosition = blocksArray.indexOf(currentBlock);
   const emptyBlockPosition = blocksArray.indexOf(blocksArray.length - 1);
   blocksArray[currentBlockPosition] = blocksArray.splice(
@@ -18,7 +21,7 @@ function swapBlocks(currentBlock: number, blocksArray: number[]): number[] {
   return blocksArray;
 }
 
-export function getBlockCoordinates(index: number) {
+function getBlockCoordinates(index: number) {
   return {
     row: Math.floor(index / 3),
     col: index % 3,
@@ -39,4 +42,11 @@ function checkSwappable(currentBlock: number, blocksArray: number[]): boolean {
   );
 }
 
-export { getShuffledBlocks, swapBlocks, checkSwappable };
+function checkIsOwn(blocksArray: number[]): boolean {
+  const winningBlocksArray = [...blocksArray].sort((a, b) => a - b);
+  return blocksArray.every(
+    (block, index) => block === winningBlocksArray[index]
+  );
+}
+
+export { getShuffledBlocks, getSwappedBlocks, checkSwappable, checkIsOwn };

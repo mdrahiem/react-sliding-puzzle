@@ -6,21 +6,47 @@
 }
 
 .app {
+  position: relative;
   .puzzle-container {
-    width: 600px;
-    height: 600px;
+    width: 300px;
+    height: 300px;
     border: 1px solid red;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     .puzzle-block {
-      width: 200px;
-      height: 200px;
+      width: 100px;
+      height: 100px;
       box-shadow: 1px 1px 1px red;
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
+  .win-message {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.2;
+  }
+}
+
+/* === party sparkles styles */
+.party-container {
+  position: fixed;
+  left: 0;
+  top: 0;
 }
