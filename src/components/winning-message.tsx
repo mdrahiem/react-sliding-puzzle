@@ -1,6 +1,7 @@
 import Confetti from "react-confetti";
+import { IWinningMessageProps } from "../types";
 
-function WinningMessage() {
+function WinningMessage({ messageSize }: IWinningMessageProps) {
   return (
     <>
       <div className="party-container">
@@ -11,7 +12,10 @@ function WinningMessage() {
           recycle={false}
         />
       </div>
-      <p className="win-message">
+      <p
+        className="win-message"
+        style={{ width: messageSize, height: messageSize }}
+      >
         🎉 🥳
         <br /> You won the game!
       </p>

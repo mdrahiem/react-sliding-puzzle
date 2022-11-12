@@ -1,7 +1,16 @@
 import { INumberOfMovesProps } from "../types";
 
 function NumberOfMoves({ moves }: INumberOfMovesProps) {
-  return <div className="moves-text">Number of moves: {moves}</div>;
+  return (
+    <>
+      <div className="moves-text">
+        <div className="arrow bounce">
+          <p>Number of moves</p>
+        </div>
+        <span>{moves}</span>
+      </div>
+    </>
+  );
 }
 
 export default NumberOfMoves;

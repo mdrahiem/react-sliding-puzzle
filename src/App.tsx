@@ -1,20 +1,16 @@
-import { useMemo, useState, MouseEvent } from "react";
+import { useMemo, useState, useEffect } from "react";
 import "./app.scss";
 import Block from "./components/block";
+import EnterGameSizeForm from "./components/enter-game-size";
 import NumberOfMoves from "./components/number-of-moves";
 import WinningMessage from "./components/winning-message";
 import { IPuzzleData } from "./types";
-import {
-  checkSwappable,
-  getShuffledBlocks,
-  getSwappedBlocks,
-  checkIsWon,
-} from "./utils";
-
-const NUMBER_OF_BLOCKS = 9;
+import { getShuffledBlocks } from "./utils";
 
 const initPuzzleData: IPuzzleData = {
-  blocks: getShuffledBlocks(NUMBER_OF_BLOCKS),
+  numberOfBlocks: 0,
+  gameStarted: false,
+  blocks: [],
   isWon: false,
   numberOfMoves: 0,
 };
@@ -23,51 +19,49 @@ function App() {
   const memoizedInitData = useMemo(() => initPuzzleData, [initPuzzleData]);
   const [puzzleData, setPuzzleData] = useState<IPuzzleData>(memoizedInitData);
 
-  function handleBlockClick(
-    event: MouseEvent<HTMLDivElement>,
-    blockId: number
-  ) {
-    event.preventDefault();
-    // check whether the block is swappable
-    const isSwappableBlock = checkSwappable(blockId, puzzleData.blocks);
-    if (isSwappableBlock) {
-      // increase the move count
-      setPuzzleData((puzzleData) => ({
-        ...puzzleData,
-        numberOfMoves: puzzleData.numberOfMoves + 1,
-      }));
-      const swappedBlocks = [...getSwappedBlocks(blockId, puzzleData.blocks)];
-      setPuzzleData((puzzleData) => ({
-        ...puzzleData,
-        blocks: swappedBlocks,
-      }));
-      // check whether puzzle is solved
-      const isPuzzleSolved = checkIsWon(swappedBlocks);
-      if (isPuzzleSolved) {
-        setPuzzleData((puzzleData) => ({
-          ...puzzleData,
-          isWon: isPuzzleSolved,
-        }));
-      }
-    }
-  }
+  useEffect(() => {
+    setPuzzleData((puzzleData) => ({
+      ...puzzleData,
+      blocks: getShuffledBlocks(puzzleData.numberOfBlocks),
+    }));
+  }, [puzzleData.numberOfBlocks]);
+
   return (
     <div className="app">
-      <h1>Welcome to puzzle</h1>
-      {puzzleData.numberOfMoves > 0 && (
-        <NumberOfMoves moves={puzzleData.numberOfMoves} />
+      <h1 className="app-title">Welcome to puzzle</h1>
+      {puzzleData.gameStarted ? (
+        <>
+          <p className="puzzle-tip">💡 You need to click on a block to move!</p>
+          {puzzleData.numberOfMoves > 0 && (
+            <NumberOfMoves moves={puzzleData.numberOfMoves} />
+          )}
+          <div
+            className="puzzle-container"
+            style={{
+              width: puzzleData.numberOfBlocks * 100,
+              height: puzzleData.numberOfBlocks * 100,
+            }}
+          >
+            {puzzleData.isWon && (
+              <WinningMessage messageSize={puzzleData.numberOfBlocks * 100} />
+            )}
+            {puzzleData.blocks.map((block) => (
+              <Block
+                blockId={block}
+                key={block}
+                puzzleData={puzzleData}
+                setPuzzleData={setPuzzleData}
+                totalBlocks={puzzleData.blocks.length}
+                blockSize={
+                  (puzzleData.numberOfBlocks * 100) / puzzleData.numberOfBlocks
+                }
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <EnterGameSizeForm setPuzzleData={setPuzzleData} />
       )}
-      <div className="puzzle-container">
-        {puzzleData.isWon && <WinningMessage />}
-        {puzzleData.blocks.map((block) => (
-          <Block
-            blockId={block}
-            key={block}
-            handleBlockClick={handleBlockClick}
-            totalBlocks={puzzleData.blocks.length}
-          />
-        ))}
-      </div>
     </div>
   );
 }

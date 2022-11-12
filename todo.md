@@ -6,17 +6,16 @@
 - [x] Random start locations; but without any duplicate blocks
 - [x] The blocks are numbered; 1 to 8
 - [ ] Responsiveness; the game size adjusts to the screen size
-- [ ] A counter tracking the number of moves
+- [x] A counter tracking the number of moves
 - [ ] Parts of an image instead of numbers in the blocks
 - [x] Win condition; if successfully completed, give some kind of feedback
-- [ ] Dynamic number of blocks; some kind of input whereby the size of the game (and number of blocks) can be increased from 3x3 to any dimension
+- [x] Dynamic number of blocks; some kind of input whereby the size of the game (and number of blocks) can be increased from 3x3 to any dimension
 
-##### Code requirements
+##### Code (My) requirements
 
 - [ ] Unit tests
-- [ ] DRY Types
-- [ ] Code segregation
+- [x] DRY Types
+- [x] Code segregation
 - [ ] Performance
-- [ ] easy, medium, hard
+- [ ] easy, medium, hard (if possible)
 - [ ] make blocks slide
-- [ ] dark theme
