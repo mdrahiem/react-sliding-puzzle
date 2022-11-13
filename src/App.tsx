@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import "./app.scss";
+import "./scss/app.scss";
 import Block from "./components/block";
 import EnterGameSizeForm from "./components/enter-game-size";
 import NumberOfMoves from "./components/number-of-moves";

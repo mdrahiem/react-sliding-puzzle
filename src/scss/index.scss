@@ -24,14 +24,12 @@ a {
   text-decoration: inherit;
 }
 
+// * {
+//   outline: 1px solid red;
+// }
+
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  user-select: none;
-  background: var(--black) url("./assets/diagmonds.webp") repeat center center;
 }
 
 h1 {
