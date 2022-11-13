@@ -16,7 +16,7 @@
 - [x] Unit tests
 - [x] DRY Types
 - [x] Code segregation
-- [ ] Performance
+- [x] Performance
 - [ ] easy, medium, hard (if possible)
 - [ ] make blocks slide
 

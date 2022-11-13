@@ -1,4 +1,4 @@
-import type { MouseEvent } from "react";
+import { MouseEvent, useCallback } from "react";
 import { IBlockProps } from "../types";
 import { checkIsWon, checkSwappable, getSwappedBlocks } from "../utils";
 
@@ -11,38 +11,38 @@ function Block({
 }: IBlockProps) {
   const isEmptyBlock = blockId === totalBlocks - 1;
 
-  function handleBlockClick(
-    event: MouseEvent<HTMLDivElement>,
-    blockId: number
-  ) {
-    event.preventDefault();
-    // check whether the block is swappable
-    const isSwappableBlock = checkSwappable(
-      blockId,
-      puzzleData.blocks,
-      puzzleData.numberOfBlocks
-    );
-    if (isSwappableBlock) {
-      // increase the move count
-      setPuzzleData((puzzleData) => ({
-        ...puzzleData,
-        numberOfMoves: puzzleData.numberOfMoves + 1,
-      }));
-      const swappedBlocks = [...getSwappedBlocks(blockId, puzzleData.blocks)];
-      setPuzzleData((puzzleData) => ({
-        ...puzzleData,
-        blocks: swappedBlocks,
-      }));
-      // check whether puzzle is solved
-      const isPuzzleSolved = checkIsWon(swappedBlocks);
-      if (isPuzzleSolved) {
+  const handleBlockClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>, blockId: number) => {
+      event.preventDefault();
+      // check whether the block is swappable
+      const isSwappableBlock = checkSwappable(
+        blockId,
+        puzzleData.blocks,
+        puzzleData.numberOfBlocks
+      );
+      if (isSwappableBlock) {
+        // increase the move count
         setPuzzleData((puzzleData) => ({
           ...puzzleData,
-          isWon: isPuzzleSolved,
+          numberOfMoves: puzzleData.numberOfMoves + 1,
         }));
+        const swappedBlocks = [...getSwappedBlocks(blockId, puzzleData.blocks)];
+        setPuzzleData((puzzleData) => ({
+          ...puzzleData,
+          blocks: swappedBlocks,
+        }));
+        // check whether puzzle is solved
+        const isPuzzleSolved = checkIsWon(swappedBlocks);
+        if (isPuzzleSolved) {
+          setPuzzleData((puzzleData) => ({
+            ...puzzleData,
+            isWon: isPuzzleSolved,
+          }));
+        }
       }
-    }
-  }
+    },
+    [blockId]
+  );
   return (
     <div
       className="puzzle-block"
