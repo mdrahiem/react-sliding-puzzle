@@ -22,4 +22,5 @@
 
 _Notes:_
 
-- I intentinoally didn't make puzzle container small wrt the viewport as it would make the game not playable in smaller screens.
+- Intentinoally didn't make puzzle container small wrt the viewport as it would make the game not playable in smaller screens.
+- Didn't implement canvas mock to test "winning-message" component

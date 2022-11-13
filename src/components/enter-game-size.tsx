@@ -16,7 +16,12 @@ function EnterGameSizeForm({ setPuzzleData }: IEnterGameSizeProps) {
     <form onSubmit={handleFormSubmit} id="submit-form" className="submit-form">
       <div>
         <label htmlFor="numberOfBlocks">Please enter size of the game!</label>
-        <input id="numberOfBlocks" name="numberOfBlocks" type="text" />
+        <input
+          id="numberOfBlocks"
+          name="numberOfBlocks"
+          type="text"
+          data-testid="numberOfBlocks"
+        />
       </div>
       <button type="submit">Generate game</button>
       <mark>

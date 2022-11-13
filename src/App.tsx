@@ -31,7 +31,9 @@ function App() {
       <h1 className="app-title">Welcome to puzzle</h1>
       {puzzleData.gameStarted ? (
         <>
-          <p className="puzzle-tip">💡 You need to click on a block to move!</p>
+          <p className="puzzle-tip" data-testid="puzzle-tip">
+            💡 You need to click on a block to move!
+          </p>
           {puzzleData.numberOfMoves > 0 && (
             <NumberOfMoves moves={puzzleData.numberOfMoves} />
           )}

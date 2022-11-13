@@ -46,6 +46,7 @@ function Block({
   return (
     <div
       className="puzzle-block"
+      data-testid="puzzle-block"
       onClick={(e) => handleBlockClick(e, blockId)}
       style={{ width: blockSize, height: blockSize }}
     >

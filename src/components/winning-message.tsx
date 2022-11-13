@@ -4,7 +4,7 @@ import { IWinningMessageProps } from "../types";
 function WinningMessage({ messageSize }: IWinningMessageProps) {
   return (
     <>
-      <div className="party-container">
+      <div className="party-container" data-testid="party-container">
         <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
