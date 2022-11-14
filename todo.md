@@ -17,8 +17,6 @@
 - [x] DRY Types
 - [x] Code segregation
 - [x] Performance
-- [ ] easy, medium, hard (if possible)
-- [ ] make blocks slide
 
 _Notes:_
 
