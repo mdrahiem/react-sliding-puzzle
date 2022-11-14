@@ -4,8 +4,9 @@ import Block from "./components/block";
 import EnterGameSizeForm from "./components/enter-game-size";
 import NumberOfMoves from "./components/number-of-moves";
 import WinningMessage from "./components/winning-message";
-import { IPuzzleData } from "./types";
+import { GameMode, IPuzzleData } from "./types";
 import { getShuffledBlocks } from "./utils";
+import ChooseGameMode from "./components/choose-game-mode";
 
 const initPuzzleData: IPuzzleData = {
   numberOfBlocks: 0,
@@ -13,6 +14,8 @@ const initPuzzleData: IPuzzleData = {
   blocks: [],
   isWon: false,
   numberOfMoves: 0,
+  gameModeChosen: false,
+  gameMode: GameMode.NUMBER,
 };
 
 function App() {
@@ -61,8 +64,14 @@ function App() {
             ))}
           </div>
         </>
-      ) : (
+      ) : puzzleData.gameModeChosen &&
+        puzzleData.gameMode === GameMode.NUMBER ? (
         <EnterGameSizeForm setPuzzleData={setPuzzleData} />
+      ) : puzzleData.gameModeChosen &&
+        puzzleData.gameMode === GameMode.IMAGE ? (
+        <h1>Image mode</h1>
+      ) : (
+        <ChooseGameMode setPuzzleData={setPuzzleData} />
       )}
     </div>
   );

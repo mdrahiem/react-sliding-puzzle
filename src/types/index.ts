@@ -12,6 +12,8 @@ export interface IPuzzleData {
   isWon: boolean;
   numberOfMoves: number;
   gameStarted: boolean;
+  gameModeChosen: boolean;
+  gameMode: GameMode;
 }
 
 export interface INumberOfMovesProps {
@@ -24,4 +26,13 @@ export interface IEnterGameSizeProps {
 
 export interface IWinningMessageProps {
   messageSize: number;
+}
+
+export interface IChooseGameModeProps {
+  setPuzzleData: React.Dispatch<React.SetStateAction<IPuzzleData>>;
+}
+
+export enum GameMode {
+  NUMBER = "NUMBER",
+  IMAGE = "IMAGE",
 }
