@@ -13,7 +13,7 @@
 
 ##### Code (My) requirements
 
-- [x] Unit tests
+- [x] Unit tests and component tests
 - [x] DRY Types
 - [x] Code segregation
 - [x] Performance
