@@ -4,7 +4,7 @@ function getShuffledBlocks(blocks: number) {
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
-  return [0, 8, 4, 2, 7, 5, 1, 3, 6];
+  return shuffledBlocks;
 }
 
 function getSwappedBlocks(

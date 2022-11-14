@@ -6,6 +6,11 @@ function EnterGameSizeForm({ setPuzzleData }: IEnterGameSizeProps) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const numberOfBlocks = formData.get("numberOfBlocks");
+    if (Number(numberOfBlocks) <= 1) {
+      return window.alert(
+        "I don't think you would enjoy playing with these blocks 😉. Please try some other number"
+      );
+    }
     setPuzzleData((puzzleData) => ({
       ...puzzleData,
       numberOfBlocks: Number(numberOfBlocks),
