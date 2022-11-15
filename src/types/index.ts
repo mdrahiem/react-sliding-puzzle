@@ -32,7 +32,18 @@ export interface IChooseGameModeProps {
   setPuzzleData: React.Dispatch<React.SetStateAction<IPuzzleData>>;
 }
 
+export interface INumberPuzzleProps {
+  puzzleData: IPuzzleData;
+  setPuzzleData: React.Dispatch<React.SetStateAction<IPuzzleData>>;
+  resetGameMode: () => void;
+}
+
 export enum GameMode {
   NUMBER = "NUMBER",
   IMAGE = "IMAGE",
+}
+
+export interface IArrowIconProps {
+  handleOnClick?: () => void;
+  className?: string;
 }

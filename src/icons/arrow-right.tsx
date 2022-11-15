@@ -1,4 +1,6 @@
-function ArrowRight() {
+import { IArrowIconProps } from "../types";
+
+function ArrowRight({ handleOnClick, className }: IArrowIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +8,8 @@ function ArrowRight() {
       viewBox="0 0 24 24"
       strokeWidth={0.5}
       stroke="rgb(222, 164, 77)"
-      className="w-2 h-2"
+      className={"w-2 h-2 " + className}
+      onClick={handleOnClick}
     >
       <path
         strokeLinecap="round"

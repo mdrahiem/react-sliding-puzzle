@@ -174,6 +174,19 @@
     rgb(255 255 255 / 30%) 0px 30px 60px -30px;
 }
 
+.game-reset {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  svg {
+    width: 40px;
+    margin-right: 10px;
+  }
+  .game-reset--arrow {
+    transform: rotate(180deg);
+  }
+}
+
 /* === party sparkles styles */
 .party-container {
   position: fixed;
