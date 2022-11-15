@@ -11,6 +11,9 @@
 - [x] Win condition; if successfully completed, give some kind of feedback
 - [x] Dynamic number of blocks; some kind of input whereby the size of the game (and number of blocks) can be increased from 3x3 to any dimension
 
+- [x] Reset and back buttons
+- [x] Home screen with choose game mode option
+
 ##### Code (My) requirements
 
 - [x] Unit tests and component tests
