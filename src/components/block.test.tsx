@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Block from "./block";
+import { GameMode } from "../types";
 
 describe("Testing block component", () => {
   const setPuzzleData = () => {};
@@ -17,6 +18,8 @@ describe("Testing block component", () => {
           isWon: false,
           numberOfMoves: 10,
           gameStarted: true,
+          gameMode: GameMode.NUMBER,
+          gameModeChosen: true,
         }}
         setPuzzleData={setPuzzleData}
       />
@@ -37,6 +40,8 @@ describe("Testing block component", () => {
           isWon: false,
           numberOfMoves: 10,
           gameStarted: true,
+          gameMode: GameMode.NUMBER,
+          gameModeChosen: true,
         }}
         setPuzzleData={setPuzzleData}
       />
