@@ -16,6 +16,7 @@ function NumberPuzzle({
       ...puzzleData,
       blocks: getShuffledBlocks(puzzleData.numberOfBlocks),
       numberOfMoves: 0,
+      isWon: false,
     }));
   }
   return (
