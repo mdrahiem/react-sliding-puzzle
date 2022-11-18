@@ -13,7 +13,7 @@ export interface IPuzzleData {
   numberOfMoves: number;
   gameStarted: boolean;
   gameModeChosen: boolean;
-  gameMode: GameMode;
+  gameMode: GameMode | null;
 }
 
 export interface INumberOfMovesProps {

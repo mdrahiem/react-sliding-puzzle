@@ -5,8 +5,7 @@ import ArrowRight from "../icons/arrow-right";
 import { GameMode, IChooseGameModeProps } from "../types";
 
 function ChooseGameMode({ setPuzzleData }: IChooseGameModeProps) {
-  const [gameMode, setGameMode] = useState<GameMode>(GameMode.NUMBER);
-  // TODO: Make it memoized
+  const [gameMode, setGameMode] = useState<GameMode | null>(null);
   function handleSubmitClick() {
     setPuzzleData((puzzleData) => ({
       ...puzzleData,
@@ -14,6 +13,7 @@ function ChooseGameMode({ setPuzzleData }: IChooseGameModeProps) {
       gameMode,
     }));
   }
+
   return (
     <>
       which puzzle would you like to play?

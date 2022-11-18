@@ -14,7 +14,7 @@ const initPuzzleData: IPuzzleData = {
   isWon: false,
   numberOfMoves: 0,
   gameModeChosen: false,
-  gameMode: GameMode.NUMBER,
+  gameMode: null,
 };
 
 function App() {
