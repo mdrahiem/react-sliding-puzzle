@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { puzzleImages } from "../consts";
 import ArrowPath from "../icons/arrow-path";
 import ArrowRight from "../icons/arrow-right";
 import { INumberPuzzleProps } from "../types";
@@ -20,9 +19,9 @@ function ImagePuzzle({
       numberOfMoves: 0,
       isWon: false,
     }));
-    setPuzzleImg(getRandomImage(puzzleImages));
+    setPuzzleImg(getRandomImage());
   }
-  const randomPuzzleImage = useMemo(() => getRandomImage(puzzleImages), []);
+  const randomPuzzleImage = useMemo(() => getRandomImage(), []);
   const [puzzleImg, setPuzzleImg] = useState<string>(randomPuzzleImage);
 
   return (

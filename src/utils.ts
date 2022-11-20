@@ -57,8 +57,8 @@ function checkIsWon(blocksArray: number[]): boolean {
   );
 }
 
-function getRandomImage(images: string[]): string {
-  return images[Math.floor(Math.random() * 4)];
+function getRandomImage(): string {
+  return `../assets/puppy${Math.floor(Math.random() * 4)}.webp`;
 }
 
 export {
