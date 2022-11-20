@@ -8,6 +8,7 @@ function Block({
   blockSize,
   puzzleData,
   setPuzzleData,
+  imgPath,
 }: IBlockProps) {
   const isEmptyBlock = blockId === totalBlocks - 1;
   const handleBlockClick = (
@@ -47,9 +48,23 @@ function Block({
       className="puzzle-block"
       data-testid="puzzle-block"
       onClick={(e) => handleBlockClick(e, blockId)}
-      style={{ width: blockSize, height: blockSize }}
+      style={
+        imgPath && !isEmptyBlock
+          ? {
+              width: blockSize,
+              height: blockSize,
+              backgroundImage: `url(${imgPath})`,
+              backgroundPosition: `-${
+                (blockId % puzzleData.numberOfBlocks) * 100
+              }px -${Math.floor(blockId / puzzleData.numberOfBlocks) * 100}px`,
+            }
+          : {
+              width: blockSize,
+              height: blockSize,
+            }
+      }
     >
-      {!isEmptyBlock ? blockId + 1 : ""}
+      {imgPath ? "" : !isEmptyBlock ? blockId + 1 : ""}
     </div>
   );
 }

@@ -57,4 +57,14 @@ function checkIsWon(blocksArray: number[]): boolean {
   );
 }
 
-export { getShuffledBlocks, getSwappedBlocks, checkSwappable, checkIsWon };
+function getRandomImage(images: string[]): string {
+  return images[Math.floor(Math.random() * 4)];
+}
+
+export {
+  getShuffledBlocks,
+  getSwappedBlocks,
+  checkSwappable,
+  checkIsWon,
+  getRandomImage,
+};

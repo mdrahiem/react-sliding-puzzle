@@ -5,7 +5,7 @@ import { GameMode, IPuzzleData } from "./types";
 import { getShuffledBlocks } from "./utils";
 import ChooseGameMode from "./components/choose-game-mode";
 import NumberPuzzle from "./components/number-puzzle";
-import ChooseImagePuzzle from "./components/choose-image-puzzle";
+import ImagePuzzle from "./components/image-puzzle";
 
 const initPuzzleData: IPuzzleData = {
   numberOfBlocks: 0,
@@ -20,7 +20,7 @@ const initPuzzleData: IPuzzleData = {
 function App() {
   const memoizedInitData = useMemo(() => initPuzzleData, [initPuzzleData]);
   const [puzzleData, setPuzzleData] = useState<IPuzzleData>(memoizedInitData);
-
+  const { gameStarted, gameMode, gameModeChosen } = puzzleData;
   useEffect(() => {
     setPuzzleData((puzzleData) => ({
       ...puzzleData,
@@ -35,19 +35,20 @@ function App() {
   return (
     <div className="app">
       <h1 className="app-title">Welcome to puzzle</h1>
-      {/* //TODO: Adjust this logic */}
-      {puzzleData.gameStarted ? (
+      {gameStarted && gameMode === GameMode.NUMBER ? (
         <NumberPuzzle
           setPuzzleData={setPuzzleData}
           puzzleData={puzzleData}
           resetGameMode={resetGameMode}
         />
-      ) : puzzleData.gameModeChosen &&
-        puzzleData.gameMode === GameMode.NUMBER ? (
+      ) : gameStarted && gameMode === GameMode.IMAGE ? (
+        <ImagePuzzle
+          setPuzzleData={setPuzzleData}
+          puzzleData={puzzleData}
+          resetGameMode={resetGameMode}
+        />
+      ) : gameModeChosen ? (
         <EnterGameSizeForm setPuzzleData={setPuzzleData} />
-      ) : puzzleData.gameModeChosen &&
-        puzzleData.gameMode === GameMode.IMAGE ? (
-        <ChooseImagePuzzle />
       ) : (
         <ChooseGameMode setPuzzleData={setPuzzleData} />
       )}

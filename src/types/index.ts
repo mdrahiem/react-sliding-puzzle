@@ -4,6 +4,7 @@ export interface IBlockProps {
   setPuzzleData: React.Dispatch<React.SetStateAction<IPuzzleData>>;
   totalBlocks: number;
   blockSize: number;
+  imgPath?: string;
 }
 
 export interface IPuzzleData {
