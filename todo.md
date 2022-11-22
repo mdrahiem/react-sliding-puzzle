@@ -7,7 +7,7 @@
 - [x] The blocks are numbered; 1 to 8
 - [x] Responsiveness; the game size adjusts to the screen size.
 - [x] A counter tracking the number of moves
-- [ ] Parts of an image instead of numbers in the blocks
+- [x] Parts of an image instead of numbers in the blocks
 - [x] Win condition; if successfully completed, give some kind of feedback
 - [x] Dynamic number of blocks; some kind of input whereby the size of the game (and number of blocks) can be increased from 3x3 to any dimension
 

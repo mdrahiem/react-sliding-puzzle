@@ -27,6 +27,7 @@ export interface IEnterGameSizeProps {
 
 export interface IWinningMessageProps {
   messageSize: number;
+  showParty?: boolean;
 }
 
 export interface IChooseGameModeProps {

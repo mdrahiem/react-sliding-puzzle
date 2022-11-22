@@ -1,19 +1,25 @@
 import Confetti from "react-confetti";
 import { IWinningMessageProps } from "../types";
 
-function WinningMessage({ messageSize }: IWinningMessageProps) {
+function WinningMessage({
+  messageSize,
+  showParty = true,
+}: IWinningMessageProps) {
   return (
     <>
-      <div className="party-container" data-testid="party-container">
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          numberOfPieces={400}
-          recycle={false}
-        />
-      </div>
+      {showParty && (
+        <div className="party-container" data-testid="party-container">
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            numberOfPieces={400}
+            recycle={false}
+          />
+        </div>
+      )}
       <p
         className="win-message"
+        data-testid="win-message"
         style={{ width: messageSize, height: messageSize }}
       >
         🎉 🥳
