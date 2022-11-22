@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { IBlockProps } from "../types";
 import { checkIsWon, checkSwappable, getSwappedBlocks } from "../utils";
+import "./block.scss";
 
 function Block({
   blockId,
@@ -45,7 +46,11 @@ function Block({
   };
   return (
     <div
-      className="puzzle-block"
+      className={
+        imgPath && !isEmptyBlock
+          ? `puzzle-block block-${imgPath}`
+          : "puzzle-block"
+      }
       data-testid="puzzle-block"
       onClick={(e) => handleBlockClick(e, blockId)}
       style={
@@ -53,7 +58,6 @@ function Block({
           ? {
               width: blockSize,
               height: blockSize,
-              backgroundImage: `url(${imgPath})`,
               backgroundPosition: `-${
                 (blockId % puzzleData.numberOfBlocks) * 100
               }px -${Math.floor(blockId / puzzleData.numberOfBlocks) * 100}px`,

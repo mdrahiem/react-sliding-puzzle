@@ -57,8 +57,8 @@ function checkIsWon(blocksArray: number[]): boolean {
   );
 }
 
-function getRandomImage(): string {
-  return `../assets/puppy${Math.floor(Math.random() * 4)}.webp`;
+function getRandomPuppyImage(): string {
+  return `puppy${Math.floor(Math.random() * 3) + 1}`;
 }
 
 export {
@@ -66,5 +66,5 @@ export {
   getSwappedBlocks,
   checkSwappable,
   checkIsWon,
-  getRandomImage,
+  getRandomPuppyImage,
 };
